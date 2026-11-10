@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c18">
+  <title>STARBOUND — O Farol Partido</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span><div><h1>STARBOUND</h1><small>O FAROL PARTIDO</small></div></div>
+      <div class="top-actions">
+        <span class="signal"><i></i> CANAL DE EXPEDIÇÃO</span>
+        <button id="sound" class="button quiet" aria-pressed="false">Som desligado</button>
+        <button id="pause" class="button quiet" disabled>Pausar</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="viewport" aria-label="Área do jogo">
+        <div class="game-frame">
+          <canvas id="world" width="1008" height="656" aria-label="Mapa do jogo"></canvas>
+          <div class="view-head" aria-hidden="true">
+            <div><span id="sector-number">SETOR 00</span><strong id="sector-name">O Ancoradouro</strong></div>
+            <span id="phase-badge" class="phase-badge">● MATÉRIA</span>
+          </div>
+          <div id="hint" class="hint" aria-live="polite" hidden></div>
+          <div id="toast" class="toast" role="status" hidden></div>
+          <div id="cover" class="cover">
+            <div class="cover-card">
+              <span id="cover-kicker" class="eyebrow">EXPEDIÇÃO 07 / SINAL PERDIDO</span>
+              <h2 id="cover-title">O Farol<br>Partido<span>.</span></h2>
+              <p id="cover-text">O mesmo mapa existe em duas realidades. Atravesse as ruínas, recupere as memórias da estação e descubra quem apagou o farol.</p>
+              <div id="cover-actions" class="cover-actions">
+                <button id="start" class="button primary">Iniciar expedição <span aria-hidden="true">↗</span></button>
+                <button id="fresh" class="button quiet" hidden>Novo jogo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="controls" aria-label="Atalhos do teclado">
+          <span><kbd>WASD</kbd> / <kbd>↑↓←→</kbd> Mover</span>
+          <span><kbd>Q</kbd> Fase</span>
+          <span><kbd>E</kbd> Interagir</span>
+          <span><kbd>Espaço</kbd> Pulso</span>
+          <span><kbd>Shift</kbd> Esquiva</span>
+          <span><kbd>Esc</kbd> Pausa</span>
+        </div>
+        <div id="touch" class="touch-controls" aria-label="Controles por toque">
+          <div class="dpad">
+            <button data-control="up" aria-label="Mover para cima">↑</button>
+            <button data-control="left" aria-label="Mover para a esquerda">←</button>
+            <button data-control="down" aria-label="Mover para baixo">↓</button>
+            <button data-control="right" aria-label="Mover para a direita">→</button>
+          </div>
+          <div class="touch-actions">
+            <button data-control="phase">Fase</button>
+            <button data-control="interact">Usar</button>
+            <button data-control="pulse">Pulso</button>
+            <button data-control="dash">Esquiva</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="Instrumentos da expedição">
+        <section class="panel vitals">
+          <div class="panel-head"><h2>Traje de campo</h2><span>01 / STATUS</span></div>
+          <div class="stat"><span>Integridade</span><strong id="health-text">100 / 100</strong></div>
+          <div class="meter" aria-hidden="true"><i id="health-bar"></i></div>
+          <div class="stat"><span>Energia de pulso</span><strong id="energy-text">100%</strong></div>
+          <div class="meter energy" aria-hidden="true"><i id="energy-bar"></i></div>
+          <div class="inventory"><div><span>Núcleos</span><strong id="cores">0 / 3</strong></div><div><span>Sucata</span><strong id="scrap">00</strong></div><div><span>Ecos</span><strong id="echo-count">0 / 6</strong></div></div>
+        </section>
+        <section class="panel objective">
+          <div class="panel-head"><h2>Objetivo atual</h2><span>02 / ROTA</span></div>
+          <p id="objective-title">Reative o Farol</p>
+          <p id="objective-text">Recupere os três núcleos da estação.</p>
+          <ol id="route" class="route"></ol>
+        </section>
+        <section class="panel log">
+          <div class="panel-head"><h2>Diário de bordo</h2><span>03 / ARQUIVO</span></div>
+          <p id="log-text" aria-live="polite">Aguardando o início da expedição.</p>
+          <button id="journal" class="button quiet" disabled>Ver transmissões ↗</button>
+        </section>
+      </aside>
+    </div>
+    <footer><span>PROJETO FAROL <b>✧</b> EXPEDIÇÃO DE CAMPO</span><span id="save-status" aria-live="polite">PROGRESSO LOCAL</span></footer>
+  </main>
+
+  <dialog id="modal" aria-labelledby="modal-title">
+    <div class="panel-head"><h2 id="modal-title"></h2><button id="modal-close" class="button quiet">Fechar ×</button></div>
+    <div id="modal-content"></div>
+  </dialog>
+  <noscript>Ative o JavaScript no navegador para jogar STARBOUND.</noscript>
+</body>
+</html>
